@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: true
+  tasks:
+     - name: removing docker container
+       shell: docker rm webapp -f
+     - name: remove docker images
+       shell: docker image rm -f sanketwawale/ansible-docker2:latest
+     - name: create docker container
+       shell: docker run -itd --name webapp -p 8090:8080 sanketwawale/ansible-docker2:latest
